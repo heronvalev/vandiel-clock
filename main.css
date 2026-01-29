@@ -1,0 +1,107 @@
+:root {
+  --bg: #0b1020;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-border: rgba(255, 255, 255, 0.10);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.60);
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(106, 155, 255, 0.22), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(180, 90, 255, 0.16), transparent 55%),
+    radial-gradient(700px 450px at 50% 90%, rgba(20, 220, 190, 0.10), transparent 55%),
+    var(--bg);
+}
+
+.wrap {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.panel {
+  width: min(820px, 100%);
+  padding: 28px;
+  border-radius: 18px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+  font-weight: 650;
+  color: var(--muted);
+}
+
+/* Big time */
+.clock {
+  font-size: clamp(44px, 7vw, 84px);
+  font-weight: 750;
+  letter-spacing: 1px;
+  line-height: 1.05;
+}
+
+/* Time + day/icon row */
+.clock-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.clock-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.day-big {
+  font-size: clamp(18px, 2.6vw, 28px);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  opacity: 0.92;
+}
+
+.element-icon {
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+}
+
+.sub {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Small screens */
+@media (max-width: 520px) {
+  .panel { padding: 20px; }
+  .panel-top { flex-direction: column; align-items: flex-start; }
+  .clock-row { align-items: flex-start; }
+  .element-icon { width: 56px; height: 56px; }
+}
