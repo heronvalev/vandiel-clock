@@ -32,7 +32,8 @@ body {
 }
 
 .panel {
-  width: min(820px, 100%);
+  width: fit-content;
+  max-width: 100%;
   padding: 28px;
   border-radius: 18px;
   background: var(--panel);
@@ -57,6 +58,29 @@ body {
   color: var(--muted);
 }
 
+/* NEW: two-column layout */
+.clock-layout {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  align-items: center;
+  gap: 28px;
+  width: fit-content;
+}
+
+.clock-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.clock-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 /* Big time */
 .clock {
   font-size: clamp(44px, 7vw, 84px);
@@ -65,14 +89,15 @@ body {
   line-height: 1.05;
 }
 
-/* Time + day/icon row */
-.clock-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 18px;
+/* Date */
+.date {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.6px;
 }
 
+/* Day + icon block */
 .clock-meta {
   display: flex;
   align-items: center;
@@ -92,16 +117,44 @@ body {
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
 }
 
-.sub {
-  margin-top: 18px;
+/* Earth pill */
+.earth-pill {
+  margin-top: 15px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.earth-label {
   font-size: 13px;
   color: var(--muted);
 }
 
+.earth-clock {
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: 0.3px;
+}
+
 /* Small screens */
 @media (max-width: 520px) {
-  .panel { padding: 20px; }
+  .panel { width: 100%; }
   .panel-top { flex-direction: column; align-items: flex-start; }
-  .clock-row { align-items: flex-start; }
+
+  /* Stack columns on mobile */
+  .clock-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .clock-right {
+    justify-content: flex-start;
+  }
+
   .element-icon { width: 56px; height: 56px; }
 }

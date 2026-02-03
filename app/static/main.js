@@ -15,6 +15,7 @@ const clockEl = document.getElementById("clock");
 const dayEl = document.getElementById("day");
 const elementIcon = document.getElementById("elementIcon");
 const dateEl = document.getElementById("vanaDate");
+const earthClockEl = document.getElementById("earthClock");
 
 const iconMap = {
     Fire: "fire.svg",
@@ -42,6 +43,13 @@ function updateClock() {
     if (!apiConfig) return;
 
     const nowMs = apiConfig.server_now_ms + (Date.now() - apiConfigLoadedAtMs);
+
+    const earthDate = new Date(nowMs);
+    const earthH = earthDate.getHours();
+    const earthM = earthDate.getMinutes();
+    const earthS = earthDate.getSeconds();
+
+    earthClockEl.textContent = `${pad2(earthH)}:${pad2(earthM)}:${pad2(earthS)}`;
 
     const earthEpochMs = apiConfig.earth_epoch_ms;
     const earthSecondsPassed = (nowMs - earthEpochMs) / 1000;
